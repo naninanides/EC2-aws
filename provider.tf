@@ -9,7 +9,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "ap-southeast-3"
+  region = "${AWS_DEFAULT_REGION}"
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
 }
