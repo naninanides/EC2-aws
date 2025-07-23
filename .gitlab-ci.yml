@@ -40,9 +40,15 @@ apply-code:
   - terraform apply -auto-approve
   dependencies:
   - plan-script
+  artifacts:
+    paths:
+    - terraform.tfstate
+    - terraform.tfstate.backup
 
 destroy-infra:
   stage: destroy
   script:
   - terraform destroy -auto-approve
+  dependencies:
+  - apply-code
   when: manual
