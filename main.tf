@@ -41,3 +41,17 @@ resource "aws_instance" "apps" {
     Name = "apps"
   }
 }
+
+resource "aws_instance" "test-pipeline" {
+  ami           = "ami-0aeade53a684c994b"
+  instance_type = "t3.small"
+  key_name      = var.key_name
+  vpc_security_group_ids = [aws_security_group.allow_all.id]
+  root_block_device {
+    delete_on_termination = true
+    volume_size = 20
+  }
+  tags = {
+    Name = "test-pipeline"
+  }
+}
