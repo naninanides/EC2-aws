@@ -17,7 +17,7 @@ before_script:
   vpc_id         = "${VPC}"
   EOF
 - terraform init
-- terraform import aws_security_group.allow_all sg-0123456789abcdef0 || echo "Already imported"
+- terraform import aws_security_group.allow_all sg-0d4fd440a9cc94e8a || echo "Already imported"
 
 stages:
 - validate
