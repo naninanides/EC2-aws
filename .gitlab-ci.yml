@@ -9,6 +9,13 @@ before_script:
 - rm -rf .terraform*
 - terraform --version
 - cat /etc/os*
+- |
+  cat <<EOF > terraform.tfvars
+  aws_access_key = "${AWS_ACCESS_KEY_ID}"
+  aws_secret_key = "${AWS_SECRET_ACCESS_KEY}"
+  key_name       = "${KEY_NAME}"
+  vpc_id         = "${VPC}"
+  EOF
 - terraform init
 
 stages:
@@ -23,16 +30,7 @@ validate-plan:
 
 plan-script:
   stage: plan
-  before_script:
-  - |
-    cat <<EOF > terraform.tfvars
-    aws_access_key = "${AWS_ACCESS_KEY_ID}"
-    aws_secret_key = "${AWS_SECRET_ACCESS_KEY}"
-    key_name       = "${KEY_NAME}"
-    vpc_id         = "${VPC}"
-    EOF
   script:
-  - terraform init
   - terraform plan
 
 apply-code:
