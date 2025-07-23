@@ -17,12 +17,12 @@ before_script:
   vpc_id         = "${VPC}"
   EOF
 - terraform init
-- terraform import aws_security_group.allow_all sg-0d4fd440a9cc94e8a || echo "Already imported"
 
 stages:
 - validate
 - plan
 - apply
+- destroy
 
 validate-plan:
   stage: validate
@@ -40,3 +40,9 @@ apply-code:
   - terraform apply -auto-approve
   dependencies:
   - plan-script
+
+destroy-infra:
+  stage: destroy
+  script:
+  - terraform destroy -auto-approve
+  when: manual
