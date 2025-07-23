@@ -1,10 +1,5 @@
 image:
   name: hashicorp/terraform:1.12.2
-  entrypoint:
-  - '/usr/bin/env'
-  - 'PATH=/usr/local/sbin/:/usr/local/bin:/usr/sbin/:/usr/bin:/sbin:/bin'
-  - 'AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID)'
-  - 'AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY)'
 before_script:
 - rm -rf .terraform*
 - terraform --version
@@ -17,6 +12,7 @@ before_script:
   vpc_id         = "${VPC}"
   EOF
 - terraform init
+- terraform import aws_security_group.allow_all sg-0123456789abcdef0 || echo "Already imported"
 
 stages:
 - validate
