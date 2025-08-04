@@ -1,7 +1,7 @@
 ########################################################################
 ############## FOR Instance EC2 ########################################
 ########################################################################
-resource "aws_instance" "nginx-pipeline" {
+resource "aws_instance" "nginx" {
   ami           = "ami-0aeade53a684c994b"
   instance_type = "t3.small"
   key_name      = var.key_name
