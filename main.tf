@@ -17,6 +17,6 @@ resource "aws_instance" "nginx" {
               systemctl start nginx
               EOF
   tags = {
-    Name = "nginx-pipeline"
+    Name = "minikube"
   }
 }
