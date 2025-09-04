@@ -16,6 +16,11 @@ resource "aws_instance" "docker" {
               apt install -y nginx
               systemctl start nginx
               EOF
+    metadata_options {
+    http_tokens   = "required"   # Wajib IMDSv2
+    http_endpoint = "enabled"    # Pastikan metadata service aktif
+    http_put_response_hop_limit = 1
+  }
   tags = {
     Name = "docker-rootless"
   }
