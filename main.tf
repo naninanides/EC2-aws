@@ -1,7 +1,7 @@
 ########################################################################
 ############## FOR Instance EC2 ########################################
 ########################################################################
-resource "aws_instance" "nginx" {
+resource "aws_instance" "docker" {
   ami           = "ami-0aeade53a684c994b"
   instance_type = "t3.small"
   key_name      = var.key_name
@@ -17,6 +17,6 @@ resource "aws_instance" "nginx" {
               systemctl start nginx
               EOF
   tags = {
-    Name = "minikube"
+    Name = "docker-rootless"
   }
 }
