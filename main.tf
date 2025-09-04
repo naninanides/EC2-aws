@@ -22,6 +22,6 @@ resource "aws_instance" "docker" {
     http_put_response_hop_limit = 1
   }
   tags = {
-    Name = "docker-rootless"
+    Name = "docker"
   }
 }
